@@ -1,0 +1,18 @@
+using UnityEngine;
+
+public class HealthUP : MonoBehaviour
+{
+    [SerializeField] private float healthValue;
+    [SerializeField] private AudioClip lifeUpSound;
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            SoundManager.instance.PlaySound(lifeUpSound);
+            collision.GetComponent<Health>().AddHealth(healthValue);
+            gameObject.SetActive(false);
+        }
+    }
+}
